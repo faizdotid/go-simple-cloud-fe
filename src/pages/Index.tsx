@@ -4,6 +4,7 @@
 
 import { useState } from 'react';
 import { uploadFile } from '../services/uploadfile';
+import { Link } from 'react-router-dom';
 
 export function IndexPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -119,14 +120,13 @@ export function IndexPage() {
       {url && (
         <div className="mt-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-xl">
           <p className="font-semibold">File uploaded successfully!</p>
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to={`/file/${url.split('/').pop()}`}
             className="text-blue-600 hover:underline break-all"
+            rel="noreferrer"
           >
             {url}
-          </a>
+          </Link>
         </div>
       )}
     </div>

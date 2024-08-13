@@ -16,7 +16,6 @@ export function FilePage() {
     const fetchFile = async () => {
       try {
         const data = await showFile(id!);
-        console.log(data);
         setFile(data);
       } catch (error) {
         console.error('File fetch error:', error);
@@ -50,7 +49,7 @@ export function FilePage() {
   };
   return (
     <div className="w-full max-w-md p-8 bg-white shadow-2xl rounded-3xl transition-all duration-300 hover:shadow-3xl">
-      <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-8 text-center">
+      <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-8 text-center w-full">
         File Details
       </h1>
       {error ? (
