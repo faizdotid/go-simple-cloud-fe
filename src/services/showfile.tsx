@@ -1,10 +1,11 @@
 interface FileMetadata {
+  status_code: number;
   filename: string;
   filesize: number;
 }
 
 export const showFile = async (id: string): Promise<FileMetadata> => {
-  const url = `${window.location.origin}/api/v1/file/${id}`;
+  const url = `${import.meta.env.VITE_API_URL}/api/v1/file/${id}`;
   try {
     const response = await fetch(url, {
       method: 'GET',
@@ -31,9 +32,11 @@ export const showFile = async (id: string): Promise<FileMetadata> => {
   } catch (error) {
     console.error('File fetch error:', error);
     if (error instanceof Error) {
+      if (error.message.includes('404')) {
+        throw new Error('File not found');
+      }
       throw error;
     }
     throw new Error('An unexpected error occurred during file fetch');
   }
 };
-

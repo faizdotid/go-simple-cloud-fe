@@ -18,18 +18,23 @@ export const uploadFile = async (
   formData.append('expires', expires);
 
   try {
-    const response = await fetch(`${window.location.origin}/api/v1/files`, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Accept: 'application/json',
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/v1/files`,
+      {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(
-        errorData.message || `Upload failed with status ${response.status}`
+        (errorData.error as string).charAt(0).toUpperCase() +
+          (errorData.error as string).slice(1) ||
+          `Request failed with status ${response.status}`
       );
     }
 

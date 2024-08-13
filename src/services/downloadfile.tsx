@@ -1,5 +1,5 @@
 export const downloadFile = async (id: string): Promise<Blob> => {
-  const url = `${window.location.origin}/api/v1/file/${id}/download`;
+  const url = `${import.meta.env.VITE_API_URL}/api/v1/file/${id}/download`;
   try {
     const response = await fetch(url, {
       method: 'GET',
@@ -19,7 +19,6 @@ export const downloadFile = async (id: string): Promise<Blob> => {
 
     return response.blob();
   } catch (error) {
-    console.error('File download error:', error);
     if (error instanceof Error) {
       throw error;
     }
