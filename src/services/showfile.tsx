@@ -2,6 +2,10 @@ interface FileMetadata {
   status_code: number;
   filename: string;
   filesize: number;
+  preview: {
+    name: string;
+    url: string;
+  };
 }
 
 export const showFile = async (id: string): Promise<FileMetadata> => {
