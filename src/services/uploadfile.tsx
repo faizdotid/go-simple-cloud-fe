@@ -15,7 +15,7 @@ export const uploadFile = async (
 
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('expires', expires);
+  formData.append('expires_in', expires);
 
   try {
     const response = await fetch(
