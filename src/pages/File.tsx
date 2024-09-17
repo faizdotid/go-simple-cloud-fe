@@ -8,6 +8,10 @@ export function FilePage() {
   const [file, setFile] = useState<{
     filename: string;
     filesize: number;
+    preview: {
+      name: string;
+      url: string;
+    };
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -58,6 +62,11 @@ export function FilePage() {
         </div>
       ) : file ? (
         <div className="space-y-6">
+          <img
+            src={import.meta.env.VITE_API_URL + '/' + file.preview.url}
+            alt="File preview"
+            className="w-full h-full object-cover rounded-xl"
+          />
           <div className="bg-gray-100 p-4 rounded-xl">
             <span className="text-lg font-semibold text-gray-700">
               Filename:

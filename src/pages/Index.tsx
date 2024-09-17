@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export function IndexPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [expires, setExpires] = useState<string>('1M');
+  const [expires, setExpires] = useState<string>('1m');
   const [url, setUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
